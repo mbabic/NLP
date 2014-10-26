@@ -1,0 +1,8 @@
+1 ROOT S .
+1 S NP VP
+1 NP Det Noun # There are multiple rules for NP.
+1 NP NP PP
+1 Noun president
+1 Noun chief of staff
+1 Det pickle
+1 Det argue
