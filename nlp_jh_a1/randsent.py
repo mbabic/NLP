@@ -65,6 +65,9 @@ class Derivation:
             self.rules.append(rule)
 
 
+START_SYMBOL_KEY = "ROOT"
+COMMENT_SYMBOL = "#"
+
 def validateTokens(tokens, lineno):
     if len(tokens) < 3:
         print("[{}] Syntax error: invalid number of tokens".format(lineno))
@@ -77,10 +80,6 @@ def validateTokens(tokens, lineno):
     except ValueError:
         print("[{}] Syntax error: First token on line must be derivation weight".format(lineno))
         sys.exit(1)
-
-
-START_SYMBOL_KEY = "ROOT"
-COMMENT_SYMBOL = "#"
 
 def parseTokens(line):
     """
@@ -129,11 +128,16 @@ def main(argv):
         usage()
 
     grammarFile = argv[0]
-    sentenceCount = int(argv[1])
+    try:
+        sentenceCount = int(argv[1])
+    except ValueError:
+        usage()
+        sys.exit(1)
 
     ruleDict = generateGrammar(grammarFile)
-    print(ruleDict[START_SYMBOL_KEY].generateSentence())
 
+    for i in range(0, sentenceCount):
+        print(ruleDict[START_SYMBOL_KEY].generateSentence())
 
 def usage():
     print("Usage: ./randsent path/to/grammar/file number_of_sentences_to_generate")

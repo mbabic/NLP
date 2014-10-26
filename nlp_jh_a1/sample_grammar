@@ -1,5 +1,6 @@
 1 ROOT S .
 1 S NP VP
+0.5 S Det
 1 NP Det Noun # There are multiple rules for NP.
 1 NP NP PP
 1 Noun president
